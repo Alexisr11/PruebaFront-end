@@ -1,0 +1,8 @@
+<h2>Editar Producto</h2>
+
+<app-formulario-producto *ngIf="modelo"
+[modelo]="modelo"
+[errores]="errores"
+(onSubmit)="guardarCambios($event)"></app-formulario-producto>
+
+<mat-spinner *ngIf="!modelo"></mat-spinner>

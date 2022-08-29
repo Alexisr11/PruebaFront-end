@@ -1,0 +1,45 @@
+<p>Listado de Clientes</p>
+
+<button mat-flat-button color="primary" routerLink="/clientes/crear-cliente">Crear Clientes</button>
+
+<ng-container contenido>
+    <table #table  mat-table [dataSource]="clientesDto" class="mat-elevation-z8 tabla-productos" >
+        <ng-container matColumnDef="id">
+            <th mat-header-cell *matHeaderCellDef>Id</th>
+            <td mat-cell *matCellDef="let element">{{element.id}}</td>
+        </ng-container>
+        <ng-container matColumnDef="cedula">
+            <th mat-header-cell *matHeaderCellDef>Cedula</th>
+            <td mat-cell *matCellDef="let element">{{element.cedula}}</td>
+        </ng-container>
+        <ng-container matColumnDef="nombre">
+            <th mat-header-cell *matHeaderCellDef>Nombre</th>
+            <td mat-cell *matCellDef="let element">{{element.nombre}}</td>
+        </ng-container>
+        <ng-container matColumnDef="apellido">
+            <th mat-header-cell *matHeaderCellDef>Apellido</th>
+            <td mat-cell *matCellDef="let element">{{element.apellido}}</td>
+        </ng-container>
+        <ng-container matColumnDef="telefono">
+            <th mat-header-cell *matHeaderCellDef>Telefono</th>
+            <td mat-cell *matCellDef="let element">{{element.telefono}}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="acciones">
+            <th mat-header-cell *matHeaderCellDef>Acciones</th>
+            <td mat-cell *matCellDef="let element">
+                <a routerLink="/clientes/editar-cliente/{{element.id}}" mat-flat-button color="primary">Editar</a>    
+                
+                <button mat-flat-button color="warn" 
+                [swal]="{title: 'Confirmacion de Eliminacion',
+                text: '¿Esta seguro de Eliminar este Registro?',
+                showCancelButton: true}"      
+                (confirm)="borrar(element.id)">Eliminar</button>
+            </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="columnasAMostrar"></tr>
+        <tr mat-row *matRowDef="let row; columns: columnasAMostrar"></tr>
+    </table>
+
+</ng-container>

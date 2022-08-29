@@ -1,0 +1,17 @@
+.container-formulario{
+    width: 100%;
+    padding: 1rem;
+}
+
+.container-formulario mat-form-field{
+    width: 300px;
+}
+
+
+.container-formulario button{
+    margin-right: 1rem;
+}
+
+.mat-form-field {
+    margin-right: 1rem;
+}

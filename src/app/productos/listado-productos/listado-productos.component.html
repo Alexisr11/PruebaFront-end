@@ -1,0 +1,37 @@
+<p>Listado de Productos</p>
+
+<button mat-flat-button color="primary" routerLink="/productos/crear-producto">Crear Productos</button>
+
+<ng-container contenido>
+    <table #table  mat-table [dataSource]="productosDto" class="mat-elevation-z8 tabla-productos" >
+        <ng-container matColumnDef="id">
+            <th mat-header-cell *matHeaderCellDef>Id</th>
+            <td mat-cell *matCellDef="let element">{{element.id}}</td>
+        </ng-container>
+        <ng-container matColumnDef="nombre">
+            <th mat-header-cell *matHeaderCellDef>Nombre</th>
+            <td mat-cell *matCellDef="let element">{{element.nombre}}</td>
+        </ng-container>
+        <ng-container matColumnDef="valor">
+            <th mat-header-cell *matHeaderCellDef>Valor</th>
+            <td mat-cell *matCellDef="let element">{{element.valor}}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="acciones">
+            <th mat-header-cell *matHeaderCellDef>Acciones</th>
+            <td mat-cell *matCellDef="let element">
+                <a routerLink="/productos/editar-producto/{{element.id}}" mat-flat-button color="primary">Editar</a>    
+                
+                <button mat-flat-button color="warn" 
+                [swal]="{title: 'Confirmacion de Eliminacion',
+                text: '¿Esta seguro de Eliminar este Registro?',
+                showCancelButton: true}"      
+                (confirm)="borrar(element.id)">Eliminar</button>
+            </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="columnasAMostrar"></tr>
+        <tr mat-row *matRowDef="let row; columns: columnasAMostrar"></tr>
+    </table>
+
+</ng-container>
